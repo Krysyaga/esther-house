@@ -3,11 +3,21 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function Header() {
   const locale = useLocale();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const menuItems = [
     { label: 'Esther House', href: `/${locale}` },
@@ -22,7 +32,7 @@ export function Header() {
 
   return (
     <>
-      <header className="relative bg-black text-white pt-8 pl-16 pr-16">
+      <header className={`sticky top-0 z-40 bg-black text-white transition-all duration-300 pl-16 pr-16 ${isScrolled ? 'pt-2' : 'pt-8'}`}>
         <nav className="h-18 md:h-16 flex items-center px-6 md:px-12">
           {/* Desktop Layout - 3 Columns */}
           <div className="hidden md:grid grid-cols-3 w-full items-center gap-8">
@@ -39,14 +49,14 @@ export function Header() {
             {/* Center Column: Logo - Iconic & Minimal */}
             <div className="flex justify-center">
               <Link href={`/${locale}`} className="flex items-center">
-                <div className="rounded-lg p-2 hover:opacity-90 transition-opacity">
+                <div className={`rounded-lg hover:opacity-90 transition-all duration-300 ${isScrolled ? 'p-1' : 'p-2'}`}>
                   <Image
                     src="/icons/EH_ICON_BLACK.svg"
                     alt="Esther House"
                     width={48}
                     height={48}
                     priority
-                    className="w-56 h-56 invert"
+                    className={`invert transition-all duration-300 ${isScrolled ? 'w-36 h-36' : 'w-72 h-72'}`}
                   />
                 </div>
               </Link>
