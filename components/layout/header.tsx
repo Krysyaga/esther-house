@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
 import { useState, useEffect } from 'react';
+import { Ticket } from 'lucide-react';
 
 export function Header() {
   const locale = useLocale();
@@ -32,7 +33,7 @@ export function Header() {
 
   return (
     <>
-      <header className={`sticky top-0 z-40 bg-black text-white transition-all duration-300 pl-16 pr-16 ${isScrolled ? 'pt-2' : 'pt-8'}`}>
+      <header className={`sticky top-0 z-40 bg-black text-white transition-all duration-300 px-4 md:px-8 lg:px-16 ${isScrolled ? 'pt-2' : 'pt-8'}`}>
         <nav className="h-18 md:h-16 flex items-center px-6 md:px-12">
           {/* Desktop Layout - 3 Columns */}
           <div className="hidden md:grid grid-cols-3 w-full items-center gap-8">
@@ -134,6 +135,15 @@ export function Header() {
 
           {/* Mobile Layout */}
           <div className="md:hidden w-full flex items-center justify-between">
+            {/* Mobile: Left - Tickets Button */}
+            <Link 
+              href={`/${locale}/tickets`}
+              className="hover:opacity-70 transition-opacity cursor-pointer p-1"
+              aria-label="Tickets"
+            >
+              <Ticket size={20} />
+            </Link>
+
             {/* Mobile: Center Logo */}
             <div className="absolute left-1/2 transform -translate-x-1/2">
               <Link href={`/${locale}`} className="flex items-center">

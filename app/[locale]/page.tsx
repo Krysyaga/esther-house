@@ -80,15 +80,15 @@ export default function HomePage() {
   return (
     <>
       <main className="bg-black text-white">
-      <section className="relative w-full h-[600px] md:h-[700px] overflow-hidden">
+      <section className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
         {/* Conteneur principal centré */}
-        <div className="relative h-full flex items-center justify-center px-6 md:px-12">
+        <div className="relative h-full flex items-center justify-center px-4 md:px-6 lg:px-12">
           {/* Layout avec overlay du texte sur l'image */}
           <div className="relative z-10 w-full max-w-6xl flex items-center justify-center h-full">
             {/* Numero de slide grand et transparent DERRIÈRE l'image - En haut à gauche */}
-            <div className="absolute left-28 -top-2 z-0 pointer-events-none">
+            <div className="absolute left-12 lg:left-28 -top-2 z-0 pointer-events-none hidden md:block">
               <div 
-                className="text-[140px] md:text-[200px] font-semibold leading-none text-white/20 whitespace-nowrap carousel-slide-number" 
+                className="text-[140px] lg:text-[200px] font-semibold leading-none text-white/20 whitespace-nowrap carousel-slide-number" 
                 key={`number-${currentSlide}`}
                 style={{ fontFamily: "'Jost', sans-serif" }}
               >
@@ -96,10 +96,10 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Image au centre - Plus grande */}
-            <div className="absolute inset-0 flex justify-end items-center pr-16 z-5">
+            {/* Image au centre - Responsive */}
+            <div className="absolute inset-0 flex justify-end items-center pr-2 md:pr-8 lg:pr-16 z-5">
               <div
-                className="relative w-full md:w-[850px] h-[350px] md:h-[420px] overflow-hidden rounded-lg border border-white/10 cursor-pointer group transition-all duration-500 hover:shadow-2xl carousel-image"
+                className="relative w-[280px] h-[250px] md:w-[600px] md:h-[350px] lg:w-[850px] lg:h-[420px] overflow-hidden rounded-lg border border-white/10 cursor-pointer group transition-all duration-500 hover:shadow-2xl carousel-image"
                 key={`image-${currentSlide}`}
                 onClick={() => goToEvent(currentSlide)}
               >
@@ -115,9 +115,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Texte overlay - À gauche de l'image */}
+            {/* Texte overlay - À gauche de l'image - Responsive */}
             <div className="relative z-20 w-full flex items-center cursor-pointer" onClick={() => goToEvent(currentSlide)}>
-              <div className="w-2/5 pr-12 flex flex-col justify-center space-y-4">
+              <div className="w-full md:w-2/5 pr-2 md:pr-12 flex flex-col justify-center space-y-2 md:space-y-4">
                 {/* Titre */}
                 <div 
                   className="space-y-1 carousel-text-title"
@@ -126,7 +126,7 @@ export default function HomePage() {
                   {titleLines.map((line, idx) => (
                     <h2
                       key={idx}
-                      className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight uppercase whitespace-nowrap hover:opacity-80 transition-opacity"
+                      className="text-2xl md:text-4xl lg:text-5xl xl:text-7xl font-bold leading-tight uppercase whitespace-nowrap md:whitespace-normal hover:opacity-80 transition-opacity"
                       style={{ fontFamily: "'Jost', sans-serif" }}
                     >
                       {line}
@@ -140,14 +140,14 @@ export default function HomePage() {
                   key={`date-${currentSlide}`}
                 >
                   <p 
-                    className="tracking-widest uppercase text-gray-500" 
-                    style={{ fontFamily: "'Jost', sans-serif", fontSize: '18px' }}
+                    className="tracking-widest uppercase text-gray-500 text-xs md:text-sm" 
+                    style={{ fontFamily: "'Jost', sans-serif", fontSize: 'clamp(12px, 2vw, 18px)' }}
                   >
                     Unique date suisse
                   </p>
                   <p 
                     className="text-gray-400 font-semibold" 
-                    style={{ fontFamily: "'Jost', sans-serif", fontSize: '24px' }}
+                    style={{ fontFamily: "'Jost', sans-serif", fontSize: 'clamp(16px, 3vw, 24px)' }}
                   >
                     {currentEvent.date}
                   </p>
@@ -176,7 +176,7 @@ export default function HomePage() {
                 </div>
               </div>
               {/* Espace pour l'image */}
-              <div className="w-3/5" />
+              <div className="hidden md:block w-3/5" />
             </div>
           </div>
         </div>
