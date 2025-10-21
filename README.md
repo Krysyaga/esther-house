@@ -35,6 +35,8 @@ types/        # Types TypeScript
 
 ## TODO
 
+- [ ] Landing page complète
+- [ ] Toutes les autres pages
 - [ ] Système de réservation
 - [ ] Paiement Stripe
 - [ ] Galerie photos
