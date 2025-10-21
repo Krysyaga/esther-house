@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /.next
+Disallow: /api
+
+# Crawler delays
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://esther-house.ch/sitemap.xml

@@ -1,0 +1,25 @@
+{
+  "common": {
+    "title": "Esther House",
+    "description": "Théâtre & Billetterie",
+    "home": "Accueil",
+    "events": "Événements",
+    "booking": "Réservation",
+    "gallery": "Galerie",
+    "about": "À Propos",
+    "contact": "Contact"
+  },
+  "nav": {
+    "home": "Accueil",
+    "events": "Événements",
+    "gallery": "Galerie",
+    "about": "À Propos",
+    "contact": "Contact",
+    "booking": "Réserver"
+  },
+  "footer": {
+    "rights": "Tous droits réservés",
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions d'Utilisation"
+  }
+}

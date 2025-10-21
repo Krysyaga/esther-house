@@ -1,0 +1,677 @@
+/* ============================================
+   TAILWIND CSS DIRECTIVES
+   ============================================ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   JOST FONT FACES (Sans Astérisque !)
+   ============================================ */
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-100-Hairline.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-100-HairlineItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-200-Thin.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-200-ThinItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-300-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-300-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-400-Book.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-400-BookItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-500-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-500-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-600-Semi.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-600-SemiItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-700-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-700-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-800-Heavy.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-800-HeavyItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-900-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost-900-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ============================================
+   DESIGN SYSTEM - COLOR VARIABLES
+   ============================================ */
+@layer base {
+  :root {
+    /* Primary Colors */
+    --color-primary: #3b82f6; /* Blue */
+    --color-primary-dark: #1e40af;
+    --color-primary-light: #dbeafe;
+    /* Neutral Colors */
+    --color-text-primary: #fff; /* White for dark mode? Wait, adjust for light/dark */
+    --color-text-secondary: #6b7280; /* Medium Gray */
+    --color-text-light: #9ca3af; /* Light Gray */
+    --color-bg: #000; /* Black for hero */
+    --color-bg-secondary: #f9fafb; /* Off White */
+    --color-border: #e5e7eb; /* Light Border */
+    /* Semantic Colors */
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+    /* Legacy CSS Variables (for shadcn/ui compatibility) */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.6%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.6%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.6%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 9.0%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.6%;
+    --primary: 262.1 80% 50.4%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 91.2% 59.8%;
+    --secondary-foreground: 222.2 47.6% 11.2%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --color-primary: #60a5fa;
+    --color-text-primary: #f3f4f6;
+    --color-text-secondary: #d1d5db;
+    --color-bg: #1f2937;
+    --color-bg-secondary: #111827;
+    --color-border: #374151;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.3% 65.1%;
+    --accent: 217.2 91.2% 59.8%;
+    --accent-foreground: 222.2 47.6% 11.2%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --primary: 262.1 80% 50.4%;
+    --primary-foreground: 222.2 47.6% 11.2%;
+    --secondary: 217.2 91.2% 59.8%;
+    --secondary-foreground: 222.2 47.6% 11.2%;
+  }
+}
+
+/* ============================================
+   TYPOGRAPHY - PROFESSIONAL & ELEGANT
+   Based on WCAG Guidelines + Modern Web Design Best Practices
+   ============================================ */
+@layer base {
+  html {
+    font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; /* Sans * */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-white text-gray-800;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg);
+    font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; /* Sans * */
+    font-weight: 400;
+    font-size: 1rem; /* 16px base */
+    line-height: 1.6; /* 160% leading - optimal for readability (WCAG AA) */
+    letter-spacing: 0.3px; /* Subtle tracking for elegant breathing room */
+  }
+  /* Reset link colors */
+  a {
+    color: inherit !important;
+  }
+  /* ========== HEADINGS HIERARCHY ========== */
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0; /* Reset top margin pour hero tight */
+    margin-bottom: 1rem; /* Réduit pour moins d'espace vertical */
+    text-wrap: balance; /* Better line breaking for headings */
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl font-black; /* Font-black = 900 pour impact */
+    font-weight: 900; /* Ultra-bold pour titres hero */
+    line-height: 1.1; /* Plus tight (110%) pour stacking compact */
+    letter-spacing: 0.05em; /* Plus de tracking pour uppercase refs */
+    text-transform: uppercase; /* Force uppercase comme refs */
+  }
+  h2 {
+    @apply text-3xl md:text-4xl font-black;
+    font-weight: 900;
+    line-height: 1.1; /* Tight pour hero */
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  h3 {
+    @apply text-2xl md:text-3xl font-semibold;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  h4 {
+    @apply text-xl md:text-2xl font-semibold;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+  h5 {
+    @apply text-lg font-medium;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+  }
+  h6 {
+    @apply text-base font-medium;
+    font-weight: 500;
+    line-height: 1.45;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+  /* ========== BODY TEXT & PARAGRAPHS ========== */
+  p {
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+    margin-bottom: 1.5rem;
+    text-wrap: pretty;
+  }
+  /* Lists - inherit from p, but adjust spacing */
+  ul, ol {
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+    margin-bottom: 1.5rem;
+  }
+  li {
+    margin-bottom: 0.5rem;
+  }
+  /* ========== LINKS & INTERACTIVE ========== */
+  a {
+    @apply transition-colors duration-200;
+    color: var(--color-primary);
+    font-weight: 500;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+  a:hover {
+    color: var(--color-primary-dark);
+  }
+  /* ========== EMPHASIS & SPECIAL TEXT ========== */
+  strong, b {
+    font-weight: 700;
+  }
+  em, i {
+    font-style: italic;
+    font-weight: 400;
+  }
+  small {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  /* Code & Pre-formatted text */
+  code, pre {
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0;
+    background-color: #f5f5f5;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+  pre {
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+  /* ========== QUOTE & BLOCKQUOTE ========== */
+  blockquote {
+    font-weight: 500;
+    line-height: 1.65;
+    letter-spacing: 0.2px;
+    padding-left: 1.5rem;
+    border-left: 4px solid var(--color-primary);
+    margin-left: 0;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+    font-style: italic;
+  }
+  /* ========== MOBILE ADJUSTMENTS ========== */
+  @media (max-width: 640px) {
+    body {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      letter-spacing: 0.25px;
+    }
+    h1, h2 {
+      font-size: 2.5rem; /* Plus compact sur mobile */
+      line-height: 1.05; /* Très tight pour stacking */
+    }
+    h3 {
+      font-size: 1.5rem;
+    }
+    p {
+      line-height: 1.65;
+    }
+  }
+}
+
+/* ============================================
+   COMPONENT CLASSES (Reusable) - WITH TYPOGRAPHY
+   ============================================ */
+@layer components {
+  /* Buttons - Medium weight for emphasis */
+  .btn {
+    @apply px-4 py-2 rounded font-medium transition-colors duration-200;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    line-height: 1.5;
+  }
+  .btn-primary {
+    @apply btn bg-blue-600 text-white hover:bg-blue-700;
+  }
+  .btn-secondary {
+    @apply btn bg-gray-200 text-gray-800 hover:bg-gray-300;
+  }
+  .btn-danger {
+    @apply btn bg-red-600 text-white hover:bg-red-700;
+  }
+  .btn-success {
+    @apply btn bg-green-600 text-white hover:bg-green-700;
+  }
+  /* Cards - Subtle typography for hierarchy */
+  .card {
+    @apply bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-6;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    line-height: 1.6;
+  }
+  .card-title {
+    @apply text-2xl font-black mb-2; /* Font-black pour cohérence */
+    font-weight: 900;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .card-text {
+    @apply text-gray-600 mb-4;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+  }
+  /* Containers - Section spacing based on typography */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 py-12;
+  }
+  .section-title {
+    @apply text-4xl font-black text-center mb-12;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  /* Links - Consistent with a tag styling */
+  .link {
+    @apply text-blue-600 hover:underline;
+    color: var(--color-primary);
+    font-weight: 500;
+    letter-spacing: 0.1px;
+  }
+  /* Forms - Readable form styling */
+  .form-input {
+    @apply w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+    border-color: var(--color-border);
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.2px;
+  }
+  .form-label {
+    @apply block text-sm font-medium mb-2;
+    color: var(--color-text-primary);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  /* Subtitles & Captions - Light weight for secondary info */
+  .subtitle {
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.2px;
+    opacity: 0.85;
+  }
+  .caption {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0.1px;
+    opacity: 0.75;
+  }
+  /* Hero Carousel Specific - Pour matcher refs */
+  .hero-title {
+    @apply font-black uppercase tracking-[0.05em] leading-[0.9]; /* Tight + tracking pour stacking */
+    font-weight: 900;
+    line-height: 0.9; /* Très tight pour refs */
+    letter-spacing: 0.05em;
+  }
+  .hero-button-line {
+    @apply w-6 h-px bg-red-600 group-hover:w-12 transition-all;
+  }
+}
+
+/* ============================================
+   CUSTOM UTILITIES
+   ============================================ */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #0ea5e9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .shadow-sm-custom {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+  .shadow-md-custom {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  .shadow-lg-custom {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  /* Transitions */
+  .transition-all-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  /* Focus States */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    focus-color: var(--color-primary);
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  .animate-slide-in-up {
+    animation: slideInUp 0.5s ease-in-out;
+  }
+}
+
+/* Carousel - Smooth fade with subtle scale (Réactivé pour transitions) */
+@keyframes smoothFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes smoothFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+.carousel-slide-active {
+  animation: smoothFadeIn 1s ease-in-out forwards;
+}
+.carousel-slide-inactive {
+  animation: smoothFadeOut 1s ease-in-out forwards;
+}
+/* Carousel Text - Smooth entrance animations */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideUpFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+.carousel-text-enter {
+  animation: slideUpFade 1.2s ease-out forwards;
+}
+.carousel-text-enter:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.carousel-text-enter:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.carousel-text-enter:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS & UTILITIES
+   ============================================ */
+@layer utilities {
+  @screen md {
+    .md-grid-2 {
+      @apply grid grid-cols-2;
+    }
+    .md-grid-3 {
+      @apply grid grid-cols-3;
+    }
+  }
+  @screen lg {
+    .lg-grid-4 {
+      @apply grid grid-cols-4;
+    }
+  }
+}
+
+/* Header Links - Underline on hover */
+.header-link {
+  transition: all 200ms;
+}
+.header-link:hover {
+  text-decoration-line: underline;
+  text-decoration-color: #860000;
+  text-underline-offset: 8px;
+}
+
+/* ============================================
+   CAROUSEL ANIMATIONS
+   ============================================ */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRotate {
+  from {
+    opacity: 0;
+    transform: rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+
+.carousel-image {
+  animation: fadeInScale 800ms ease-out;
+}
+
+.carousel-slide-number {
+  animation: fadeInRotate 600ms ease-out;
+}
+
+.carousel-text-title {
+  animation: slideUpFade 600ms ease-out 200ms both;
+}
+
+.carousel-text-date {
+  animation: slideUpFade 600ms ease-out 400ms both;
+}
+
+.carousel-text-dots {
+  animation: slideUpFade 600ms ease-out 600ms both;
+}
