@@ -21,14 +21,12 @@ export function Header() {
   }, []);
 
   const menuItems = [
-    { label: 'Esther House', href: `/${locale}` },
-    { label: 'Concerts', href: `/${locale}/concerts` },
-    { label: 'Pôle Suisse', href: `/${locale}/pole-suisse` },
-    { label: 'Actions Culturelles', href: `/${locale}/actions-culturelles` },
-    { label: 'Formation', href: `/${locale}/formation` },
-    { label: 'Infos', href: `/${locale}/infos` },
-    { label: 'News', href: `/${locale}/news` },
-    { label: 'En images', href: `/${locale}/en-images` },
+    { label: 'Accueil', href: `/${locale}` },
+    { label: 'Événements', href: `/${locale}/events` },
+    { label: 'À Propos', href: `/${locale}/about` },
+    { label: 'Galerie', href: `/${locale}/gallery` },
+    { label: 'Contact', href: `/${locale}/contact` },
+    { label: 'Réservation', href: `/${locale}/booking` },
   ];
 
   return (
@@ -37,10 +35,10 @@ export function Header() {
         <nav className="h-18 md:h-16 flex items-center px-6 md:px-12">
           {/* Desktop Layout - 3 Columns */}
           <div className="hidden md:grid grid-cols-3 w-full items-center gap-8">
-            {/* Left Column: Tickets */}
+            {/* Left Column: Booking/Tickets */}
             <div className="flex justify-start">
               <Link 
-                href={`/${locale}/tickets`}
+                href={`/${locale}/booking`}
                 className="header-link text-white text-xs font-bold tracking-widest uppercase hover:opacity-60 transition-opacity"
               >
                 BILLETTERIE
@@ -135,11 +133,11 @@ export function Header() {
 
           {/* Mobile Layout */}
           <div className="md:hidden w-full flex items-center justify-between">
-            {/* Mobile: Left - Tickets Button */}
+            {/* Mobile: Left - Booking/Tickets Button */}
             <Link 
-              href={`/${locale}/tickets`}
+              href={`/${locale}/booking`}
               className="hover:opacity-70 transition-opacity cursor-pointer p-1"
-              aria-label="Tickets"
+              aria-label="Booking"
             >
               <Ticket size={20} />
             </Link>
