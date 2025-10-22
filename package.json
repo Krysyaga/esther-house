@@ -42,5 +42,10 @@
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.5.2"
+  },
+  "overrides": {
+    "rimraf": "^5.0.8",
+    "glob": "^11.0.0",
+    "inflight": "1.0.6"
   }
 }
