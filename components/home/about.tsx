@@ -10,7 +10,7 @@ export function About() {
     {
       icon: Users,
       title: "Communauté Active",
-      description: "Une communauté passionnée d'artistes et de spectateurs.",
+      description: "Une communauté passionnée d&apos;artistes et de spectateurs.",
     },
     {
       icon: Award,
