@@ -26,23 +26,21 @@ export default function Error({ error, reset }: ErrorProps) {
             className="text-4xl md:text-6xl font-bold uppercase"
             style={{ fontFamily: "'Jost', sans-serif" }}
           >
-            Erreur Serveur
+            Maintenance en cours
           </h1>
         </div>
 
         {/* Description */}
         <div className="space-y-4">
           <p className="text-lg md:text-xl text-gray-400">
-            Oups ! Une erreur inattendue s&apos;est produite.
+            Nous effectuons actuellement une maintenance sur notre site.
           </p>
           <p className="text-base md:text-lg text-gray-500">
-            Notre équipe a été notifiée et travaille pour résoudre le problème.
+            Nous serons de retour très bientôt avec de nouvelles améliorations !
           </p>
-          {error.digest && (
-            <p className="text-sm text-gray-600 font-mono">
-              ID d&apos;erreur: {error.digest}
-            </p>
-          )}
+          <p className="text-sm text-gray-600">
+            Merci de votre patience et de votre compréhension.
+          </p>
         </div>
 
         {/* Boutons d'action */}
@@ -63,23 +61,34 @@ export default function Error({ error, reset }: ErrorProps) {
           </Link>
         </div>
 
-        {/* Support */}
+        {/* Réseaux sociaux */}
         <div className="pt-8 border-t border-white/10">
-          <p className="text-gray-500 mb-4">Besoin d&apos;aide ?</p>
+          <p className="text-gray-500 mb-4">Suivez-nous pour les mises à jour :</p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link 
-              href={`/${locale}/contact`}
-              className="text-[#860000] hover:text-white transition-colors font-medium"
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
-              Nous contacter
-            </Link>
             <a 
-              href="mailto:support@estherhouse.ch"
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[#860000] hover:text-white transition-colors font-medium"
               style={{ fontFamily: "'Jost', sans-serif" }}
             >
-              Email support
+              Instagram
+            </a>
+            <a 
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#860000] hover:text-white transition-colors font-medium"
+              style={{ fontFamily: "'Jost', sans-serif" }}
+            >
+              Facebook
+            </a>
+            <a 
+              href="mailto:contact@estherhouse.ch"
+              className="text-[#860000] hover:text-white transition-colors font-medium"
+              style={{ fontFamily: "'Jost', sans-serif" }}
+            >
+              Email
             </a>
           </div>
         </div>
