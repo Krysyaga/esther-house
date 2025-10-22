@@ -29,7 +29,7 @@ export function Footer() {
         {/* Newsletter */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-8 mb-8 md:mb-12 pb-8 md:pb-12 border-b border-black/20">
           <div className="flex-1">
-            <h3 className="font-bold text-base md:text-lg mb-2">S'inscrire à la newsletter</h3>
+            <h3 className="font-bold text-base md:text-lg mb-2">S&apos;inscrire à la newsletter</h3>
             <p className="text-xs md:text-sm text-gray-700">Recevez nos dernières actualités</p>
           </div>
           
@@ -46,7 +46,7 @@ export function Footer() {
               type="submit"
               className="px-4 md:px-6 py-2 bg-black text-white font-bold hover:opacity-80 transition-opacity rounded text-sm whitespace-nowrap"
             >
-              {subscribed ? '✓' : 'S\'abonner'}
+              {subscribed ? '✓' : 'S&apos;abonner'}
             </button>
           </form>
         </div>

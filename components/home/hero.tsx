@@ -6,7 +6,7 @@ export function Hero() {
           Bienvenue à Esther House
         </h1>
         <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Découvrez un lieu unique dédié à la culture, à l'art et aux événements
+          Découvrez un lieu unique dédié à la culture, à l&apos;art et aux événements
           mémorables.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -25,16 +25,16 @@ export function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              À Propos d'Esther House
+              À Propos d&apos;Esther House
             </h2>
             <p className="text-muted-foreground mb-4">
-              Depuis sa fondation, Esther House s'est établie comme un centre
+              Depuis sa fondation, Esther House s&apos;est établie comme un centre
               culturel incontournable, dédié à la promotion des arts, de la
               musique et du théâtre.
             </p>
             <p className="text-muted-foreground mb-8">
               Notre mission est de créer un espace inclusif où la culture peut
-              s'épanouir et où chacun peut découvrir la richesse artistique.
+              s&apos;épanouir et où chacun peut découvrir la richesse artistique.
             </p>
             <button className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90">
               En Savoir Plus

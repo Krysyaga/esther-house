@@ -18,8 +18,8 @@ export function Newsletter() {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setMessage("Merci de vous être inscrit!");
       setEmail("");
-    } catch (error) {
-      setMessage("Une erreur s'est produite. Veuillez réessayer.");
+    } catch {
+      setMessage("Une erreur s&apos;est produite. Veuillez réessayer.");
     } finally {
       setLoading(false);
     }
@@ -35,7 +35,7 @@ export function Newsletter() {
           </h2>
           <p className="text-lg opacity-90">
             Inscrivez-vous à notre newsletter pour recevoir les meilleures
-            actualités d'Esther House.
+            actualités d&apos;Esther House.
           </p>
         </div>
 
@@ -53,7 +53,7 @@ export function Newsletter() {
             disabled={loading}
             className="px-6 py-3 bg-white text-primary rounded-lg font-medium hover:bg-white/90 disabled:opacity-50"
           >
-            {loading ? "..." : "S'inscrire"}
+            {loading ? "..." : "S&apos;inscrire"}
           </button>
         </form>
 
