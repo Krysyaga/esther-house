@@ -10,13 +10,13 @@ export const metadata: Metadata = {
 export default function EventDetailPage({
   params,
 }: {
-  params: { locale: string; id: string };
+  params: Promise<{ locale: string; id: string }>;
 }) {
   return (
     <div className="container py-12">
       <h1 className="text-4xl font-bold mb-4">Détail Événement</h1>
-      <p className="text-gray-600">ID: {params.id}</p>
-      <p className="text-gray-600">Locale: {params.locale}</p>
+      <p className="text-gray-600">ID: {(params as any).id}</p>
+      <p className="text-gray-600">Locale: {(params as any).locale}</p>
       <p className="text-gray-600">Page en construction...</p>
     </div>
   );
