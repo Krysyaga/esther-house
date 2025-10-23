@@ -39,7 +39,7 @@ export function Header() {
             {/* Left Column: Booking/Tickets */}
             <div className="flex justify-start">
               <Link 
-                href={`/${locale}/booking`}
+                href={`/${locale}/ticketing`}
                 className="header-link text-white text-xs font-bold tracking-widest uppercase hover:opacity-60 transition-opacity"
               >
                 {t('nav.ticketing')}
@@ -132,9 +132,9 @@ export function Header() {
           <div className="md:hidden w-full flex items-center justify-between">
             {/* Mobile: Left - Booking/Tickets Button */}
             <Link 
-              href={`/${locale}/booking`}
+              href={`/${locale}/ticketing`}
               className="hover:opacity-70 transition-opacity cursor-pointer p-1"
-              aria-label="Booking"
+              aria-label="Ticketing"
             >
               <Ticket size={20} />
             </Link>
