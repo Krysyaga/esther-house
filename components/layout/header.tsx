@@ -32,8 +32,8 @@ export function Header() {
 
   return (
     <>
-      <header className={`sticky top-0 z-40 bg-black text-white transition-all duration-300 px-4 md:px-8 lg:px-16 ${isScrolled ? 'pt-2' : 'pt-8'}`}>
-        <nav className="h-18 md:h-16 flex items-center px-6 md:px-12">
+      <header className={`sticky top-0 z-40 bg-black text-white transition-all duration-300 px-4 md:px-8 lg:px-16 ${isScrolled ? 'pt-2' : 'pt-4'}`}>
+        <nav className="h-20 md:h-16 flex items-center px-6 md:px-12">
           {/* Desktop Layout - 3 Columns */}
           <div className="hidden md:grid grid-cols-3 w-full items-center gap-8">
             {/* Left Column: Booking/Tickets */}
@@ -145,10 +145,10 @@ export function Header() {
                 <Image
                   src="/icons/EH_ICON_BLACK.svg"
                   alt="Esther House"
-                  width={28}
-                  height={28}
+                  width={64}
+                  height={64}
                   priority
-                  className="w-7 h-7"
+                  className="w-32 h-32 invert"
                 />
               </Link>
             </div>
