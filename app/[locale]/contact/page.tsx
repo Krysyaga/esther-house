@@ -1,7 +1,6 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
 import { useState } from 'react';
 
 export default function ContactPage() {
@@ -12,6 +11,9 @@ export default function ContactPage() {
     subject: '',
     message: '',
   });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [statusMessage, setStatusMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -21,28 +23,54 @@ export default function ContactPage() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setLoading(true);
+    setStatus('idle');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      let data;
+      const contentType = response.headers.get('content-type');
+      
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        console.error('Non-JSON response:', text);
+        throw new Error('Server returned invalid response');
+      }
+
+      if (response.ok) {
+        setStatus('success');
+        setStatusMessage(t('pages.contact_success') || 'Message envoyé avec succès ! Nous vous répondrons bientôt.');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setStatus('error');
+        setStatusMessage(data.error || (t('pages.contact_error') || 'Une erreur est survenue. Veuillez réessayer.'));
+      }
+    } catch (error) {
+      setStatus('error');
+      const errorMsg = error instanceof Error ? error.message : (t('pages.contact_connection_error') || 'Erreur de connexion');
+      setStatusMessage(`${errorMsg}. ${t('pages.contact_retry') || 'Veuillez réessayer.'}`);
+      console.error('Form error:', error);
+    } finally {
+      setLoading(false);
+      setTimeout(() => setStatus('idle'), 5000);
+    }
   };
 
   return (
     <main className="bg-black text-white">
       {/* Header Section */}
-      <section className="relative w-full py-20 md:py-32 px-4 md:px-8 border-b border-white/10 overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="https://via.placeholder.com/1920x600?text=Contact+Background"
-            alt="Contact Background"
-            fill
-            className="object-cover"
-          />
-          {/* Dark overlay */}
-          <div className="absolute inset-0 bg-black/70" />
-        </div>
-        
+      <section className="relative w-full py-20 md:py-32 px-4 md:px-8 border-b border-white/10">
         <div className="max-w-7xl mx-auto text-center">
           <h1 
             className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase mb-6 leading-tight"
@@ -127,6 +155,16 @@ export default function ContactPage() {
               <div className="w-12 h-1 mb-12" style={{ backgroundColor: "var(--brand-accent)" }} />
               
               <form onSubmit={handleSubmit} className="space-y-6">
+                {status === 'success' && (
+                  <div className="p-4 bg-green-900/30 border border-green-500 rounded-lg text-green-400">
+                    {statusMessage}
+                  </div>
+                )}
+                {status === 'error' && (
+                  <div className="p-4 bg-red-900/30 border border-red-500 rounded-lg text-red-400">
+                    {statusMessage}
+                  </div>
+                )}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-3 uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
                     {t('pages.contact_name')}
@@ -193,14 +231,15 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-lg font-bold uppercase text-sm tracking-wider transition-all duration-300 hover:opacity-90"
+                  disabled={loading}
+                  className="w-full py-3 rounded-lg font-bold uppercase text-sm tracking-wider transition-all duration-300 hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{
                     fontFamily: "'Jost', sans-serif",
                     backgroundColor: 'var(--brand-accent)',
                     color: 'black'
                   }}
                 >
-                  {t('pages.contact_send')}
+                  {loading ? (t('pages.contact_sending') || 'Envoi en cours...') : t('pages.contact_send')}
                 </button>
               </form>
             </div>

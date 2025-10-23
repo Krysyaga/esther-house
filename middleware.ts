@@ -12,9 +12,9 @@ export function middleware(request: NextRequest) {
   const maintenanceMode = process.env.MAINTENANCE_MODE === 'true';
   const pathname = request.nextUrl.pathname;
 
-  // Allow API routes regardless of maintenance mode
+  // Skip API routes - don't apply i18n routing to API
   if (pathname.startsWith('/api/')) {
-    return handleI18nRouting(request);
+    return NextResponse.next();
   }
 
   // If maintenance mode is ON, redirect to maintenance page
@@ -29,7 +29,7 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  // Normal routing
+  // Normal routing with i18n
   return handleI18nRouting(request);
 }
 
