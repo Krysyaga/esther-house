@@ -15,11 +15,58 @@
     "gallery": "Gallery",
     "about": "About",
     "contact": "Contact",
-    "booking": "Book Now"
+    "booking": "Book Now",
+    "ticketing": "TICKETING"
   },
   "footer": {
     "rights": "All rights reserved",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Use"
+    "terms": "Terms of Use",
+    "newsletter_title": "Subscribe to our newsletter",
+    "newsletter_description": "Receive our latest news",
+    "newsletter_placeholder": "Your email",
+    "newsletter_button": "Subscribe",
+    "newsletter_subscribed": "✓",
+    "follow_us": "Follow us",
+    "search": "Search"
+  },
+  "hero": {
+    "unique_date": "Unique Swiss date"
+  },
+  "upcoming": {
+    "title": "Coming Soon",
+    "description": "Discover our upcoming events and book your tickets now.",
+    "view_all": "View all events",
+    "artist": "Artist",
+    "concert": "Concert",
+    "theatre": "Theatre",
+    "exhibition": "Exhibition"
+  },
+  "pages": {
+    "gallery": "Gallery",
+    "events": "Our Events",
+    "about": "About",
+    "contact": "Contact",
+    "booking": "Booking",
+    "construction": "Page under construction..."
+  },
+  "notfound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for does not exist or has been moved.",
+    "error_code": "Error code: 404 - Page Not Found",
+    "back_home": "Back to home",
+    "view_events": "View events",
+    "useful_links": "Useful links:"
+  },
+  "error": {
+    "title": "Maintenance in progress",
+    "description": "We are currently performing maintenance on our site.",
+    "message": "We will be back very soon with new improvements!",
+    "patience": "Thank you for your patience and understanding.",
+    "retry": "Retry",
+    "contact_us": "Contact us"
+  },
+  "locale": {
+    "detecting": "Detecting your location..."
   }
 }

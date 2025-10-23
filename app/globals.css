@@ -6,6 +6,13 @@
 @tailwind utilities;
 
 /* ============================================
+   FORCE JOST EVERYWHERE
+   ============================================ */
+* {
+  font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+/* ============================================
    JOST FONT FACES (Sans Astérisque !)
    ============================================ */
 @font-face {
@@ -140,6 +147,9 @@
    ============================================ */
 @layer base {
   :root {
+    /* Brand Colors */
+    --brand-accent: #860000; /* Dark Red - Main brand color */
+    --brand-accent-light: #b91c1c; /* Lighter variant */
     /* Primary Colors */
     --color-primary: #3b82f6; /* Blue */
     --color-primary-dark: #1e40af;
@@ -212,7 +222,7 @@
    ============================================ */
 @layer base {
   html {
-    font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; /* Sans * */
+    font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -220,7 +230,7 @@
     @apply bg-white text-gray-800;
     color: var(--color-text-primary);
     background-color: var(--color-bg);
-    font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; /* Sans * */
+    font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-weight: 400;
     font-size: 1rem; /* 16px base */
     line-height: 1.6; /* 160% leading - optimal for readability (WCAG AA) */
@@ -616,7 +626,7 @@
 }
 .header-link:hover {
   text-decoration-line: underline;
-  text-decoration-color: #860000;
+  text-decoration-color: var(--brand-accent);
   text-underline-offset: 8px;
 }
 
@@ -674,4 +684,123 @@
 
 .carousel-text-dots {
   animation: slideUpFade 600ms ease-out 600ms both;
+}
+
+/* ============================================
+   UPCOMING EVENTS STACKED SECTION ANIMATIONS
+   ============================================ */
+@keyframes stackCardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cardGlowPulse {
+  0%, 100% {
+    box-shadow: inset 0 0 0px transparent, 0 0 0px transparent;
+  }
+  50% {
+    box-shadow: inset 0 0 15px rgba(220, 38, 38, 0.1), 0 0 15px rgba(220, 38, 38, 0.05);
+  }
+}
+
+.upcoming-events-card {
+  animation: stackCardEnter 600ms ease-out forwards;
+}
+
+.upcoming-events-card:nth-child(1) {
+  animation-delay: 100ms;
+}
+
+.upcoming-events-card:nth-child(2) {
+  animation-delay: 200ms;
+}
+
+.upcoming-events-card:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+.upcoming-events-card:nth-child(4) {
+  animation-delay: 400ms;
+}
+
+.upcoming-events-card:nth-child(5) {
+  animation-delay: 500ms;
+}
+
+.upcoming-events-card:nth-child(6) {
+  animation-delay: 600ms;
+}
+
+/* Responsive adjustments for upcoming events */
+@media (min-width: 768px) {
+  .upcoming-events-container {
+    height: 700px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .upcoming-events-container {
+    height: 800px !important;
+  }
+}
+
+/* ============================================
+   UPCOMING EVENTS STACKED CARDS ANIMATIONS
+   ============================================ */
+@keyframes cardSlideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardFadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* État par défaut - invisible */
+.upcoming-events-container > div {
+  opacity: 0;
+}
+
+.upcoming-card-animate {
+  animation: cardFadeScale 700ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+  opacity: 1;
+}
+
+.upcoming-card-animate-0 {
+  animation-delay: 0ms !important;
+}
+
+.upcoming-card-animate-1 {
+  animation-delay: 150ms !important;
+}
+
+.upcoming-card-animate-2 {
+  animation-delay: 300ms !important;
+}
+
+.upcoming-card-animate-3 {
+  animation-delay: 450ms !important;
+}
+
+.upcoming-card-animate-4 {
+  animation-delay: 600ms !important;
 }

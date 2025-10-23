@@ -2,12 +2,13 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
 import { Ticket } from 'lucide-react';
 
 export function Header() {
   const locale = useLocale();
+  const t = useTranslations();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -21,12 +22,12 @@ export function Header() {
   }, []);
 
   const menuItems = [
-    { label: 'Accueil', href: `/${locale}` },
-    { label: 'Événements', href: `/${locale}/events` },
-    { label: 'À Propos', href: `/${locale}/about` },
-    { label: 'Galerie', href: `/${locale}/gallery` },
-    { label: 'Contact', href: `/${locale}/contact` },
-    { label: 'Réservation', href: `/${locale}/booking` },
+    { label: t('nav.home'), href: `/${locale}` },
+    { label: t('nav.events'), href: `/${locale}/events` },
+    { label: t('nav.about'), href: `/${locale}/about` },
+    { label: t('nav.gallery'), href: `/${locale}/gallery` },
+    { label: t('nav.contact'), href: `/${locale}/contact` },
+    { label: t('nav.booking'), href: `/${locale}/booking` },
   ];
 
   return (
@@ -41,7 +42,7 @@ export function Header() {
                 href={`/${locale}/booking`}
                 className="header-link text-white text-xs font-bold tracking-widest uppercase hover:opacity-60 transition-opacity"
               >
-                BILLETTERIE
+                {t('nav.ticketing')}
               </Link>
             </div>
 
@@ -87,24 +88,20 @@ export function Header() {
               <div className="flex items-center gap-3 text-xs font-bold">
                 <button
                   onClick={() => {
-                    const newLocale = locale === 'en' ? 'fr' : 'en';
-                    window.location.href = `/${newLocale}`;
+                    window.location.href = '/fr';
                   }}
-                  className="hover:opacity-70 transition-opacity cursor-pointer flex items-center gap-2"
+                  className={`header-link transition-opacity cursor-pointer ${locale === 'fr' ? 'opacity-100' : 'opacity-40 hover:opacity-70'}`}
                 >
-                  {locale === 'en' ? (
-                    <>
-                      <span className="header-link opacity-100">FR</span>
-                      <span className="opacity-40">/</span>
-                      <span className="header-link opacity-40">EN</span>
-                    </>
-                  ) : (
-                    <>
-                      <span className="header-link opacity-40">FR</span>
-                      <span className="opacity-40">/</span>
-                      <span className="header-link opacity-100">EN</span>
-                    </>
-                  )}
+                  FR
+                </button>
+                <span className="opacity-40">/</span>
+                <button
+                  onClick={() => {
+                    window.location.href = '/en';
+                  }}
+                  className={`header-link transition-opacity cursor-pointer ${locale === 'en' ? 'opacity-100' : 'opacity-40 hover:opacity-70'}`}
+                >
+                  EN
                 </button>
               </div>
 
@@ -160,15 +157,25 @@ export function Header() {
 
             {/* Mobile: Right side */}
             <div className="ml-auto flex items-center gap-4">
-              <button
-                onClick={() => {
-                  const newLocale = locale === 'en' ? 'fr' : 'en';
-                  window.location.href = `/${newLocale}`;
-                }}
-                className="text-xs font-bold hover:opacity-70 transition-opacity cursor-pointer"
-              >
-                <span className="header-link">{locale === 'en' ? 'FR' : 'EN'}</span>
-              </button>
+              <div className="flex items-center gap-2 text-xs font-bold">
+                <button
+                  onClick={() => {
+                    window.location.href = '/fr';
+                  }}
+                  className={`header-link transition-opacity cursor-pointer ${locale === 'fr' ? 'opacity-100' : 'opacity-40 hover:opacity-70'}`}
+                >
+                  FR
+                </button>
+                <span className="opacity-40">/</span>
+                <button
+                  onClick={() => {
+                    window.location.href = '/en';
+                  }}
+                  className={`header-link transition-opacity cursor-pointer ${locale === 'en' ? 'opacity-100' : 'opacity-40 hover:opacity-70'}`}
+                >
+                  EN
+                </button>
+              </div>
               <button 
                 className="hover:opacity-70 transition-opacity cursor-pointer p-1"
                 aria-label="Search"

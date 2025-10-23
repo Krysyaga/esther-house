@@ -15,11 +15,58 @@
     "gallery": "Galerie",
     "about": "À Propos",
     "contact": "Contact",
-    "booking": "Réserver"
+    "booking": "Réserver",
+    "ticketing": "BILLETTERIE"
   },
   "footer": {
     "rights": "Tous droits réservés",
     "privacy": "Politique de Confidentialité",
-    "terms": "Conditions d'Utilisation"
+    "terms": "Conditions d'Utilisation",
+    "newsletter_title": "S'inscrire à la newsletter",
+    "newsletter_description": "Recevez nos dernières actualités",
+    "newsletter_placeholder": "Votre email",
+    "newsletter_button": "S'abonner",
+    "newsletter_subscribed": "✓",
+    "follow_us": "Suivez-nous",
+    "search": "Rechercher"
+  },
+  "hero": {
+    "unique_date": "Unique date suisse"
+  },
+  "upcoming": {
+    "title": "Prochainement",
+    "description": "Découvrez nos événements à venir et réservez vos places dès maintenant.",
+    "view_all": "Voir tous les événements",
+    "artist": "Artiste",
+    "concert": "Concert",
+    "theatre": "Théâtre",
+    "exhibition": "Exposition"
+  },
+  "pages": {
+    "gallery": "Galerie",
+    "events": "Nos Événements",
+    "about": "À Propos",
+    "contact": "Contact",
+    "booking": "Réservation",
+    "construction": "Page en construction..."
+  },
+  "notfound": {
+    "title": "Page Non Trouvée",
+    "description": "Désolé, la page que vous recherchez n'existe pas ou a été déplacée.",
+    "error_code": "Code d'erreur: 404 - Page Not Found",
+    "back_home": "Retour à l'accueil",
+    "view_events": "Voir les événements",
+    "useful_links": "Liens utiles :"
+  },
+  "error": {
+    "title": "Maintenance en cours",
+    "description": "Nous effectuons actuellement une maintenance sur notre site.",
+    "message": "Nous serons de retour très bientôt avec de nouvelles améliorations !",
+    "patience": "Merci de votre patience et de votre compréhension.",
+    "retry": "Réessayer",
+    "contact_us": "Nous contacter"
+  },
+  "locale": {
+    "detecting": "Détection de votre localisation..."
   }
 }

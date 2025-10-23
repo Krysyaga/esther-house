@@ -63,7 +63,7 @@ export default function MaintenancePage() {
             {timeRemaining > 0 && (
               <div className="pt-8 border-t border-white/10">
                 <p className="text-gray-500 mb-4">Retour estimé :</p>
-                <div className="text-3xl md:text-4xl font-bold text-[#860000]" style={{ fontFamily: "'Jost', sans-serif" }}>
+                <div className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "'Jost', sans-serif", color: "var(--brand-accent)" }}>
                   {String(hours).padStart(2, '0')}:{String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
                 </div>
               </div>
@@ -74,8 +74,8 @@ export default function MaintenancePage() {
               <p className="text-gray-500 mb-4">Questions ? Contactez-nous :</p>
               <a
                 href="mailto:contact@estherhouse.ch"
-                className="inline-block px-8 py-3 bg-[#860000] text-white font-bold hover:opacity-80 transition-opacity rounded-lg"
-                style={{ fontFamily: "'Jost', sans-serif" }}
+                className="inline-block px-8 py-3 text-white font-bold hover:opacity-80 transition-opacity rounded-lg"
+                style={{ fontFamily: "'Jost', sans-serif", backgroundColor: "var(--brand-accent)" }}
               >
                 Nous contacter
               </a>
@@ -89,8 +89,8 @@ export default function MaintenancePage() {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#860000] hover:text-white transition-colors font-medium"
-                  style={{ fontFamily: "'Jost', sans-serif" }}
+                  className="hover:text-white transition-colors font-medium"
+                  style={{ fontFamily: "'Jost', sans-serif", color: "var(--brand-accent)" }}
                 >
                   Instagram
                 </a>
@@ -98,8 +98,8 @@ export default function MaintenancePage() {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#860000] hover:text-white transition-colors font-medium"
-                  style={{ fontFamily: "'Jost', sans-serif" }}
+                  className="hover:text-white transition-colors font-medium"
+                  style={{ fontFamily: "'Jost', sans-serif", color: "var(--brand-accent)" }}
                 >
                   Facebook
                 </a>

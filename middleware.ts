@@ -12,14 +12,21 @@ export function middleware(request: NextRequest) {
   const maintenanceMode = process.env.MAINTENANCE_MODE === 'true';
   const pathname = request.nextUrl.pathname;
 
-  // Allow maintenance page and API routes regardless of maintenance mode
-  if (pathname === '/maintenance' || pathname.startsWith('/api/')) {
+  // Allow API routes regardless of maintenance mode
+  if (pathname.startsWith('/api/')) {
     return handleI18nRouting(request);
   }
 
-  // If maintenance mode is ON, block all other routes
-  if (maintenanceMode && pathname !== '/maintenance') {
-    return NextResponse.redirect(new URL('/maintenance', request.url));
+  // If maintenance mode is ON, redirect to maintenance page
+  if (maintenanceMode) {
+    // Extract locale from pathname or use default
+    const localeMatch = pathname.match(/^\/([a-z]{2})(?:\/|$)/);
+    const locale = localeMatch ? localeMatch[1] : 'en';
+    
+    // Only redirect if not already on maintenance page
+    if (!pathname.includes('/maintenance')) {
+      return NextResponse.redirect(new URL(`/${locale}/maintenance`, request.url));
+    }
   }
 
   // Normal routing

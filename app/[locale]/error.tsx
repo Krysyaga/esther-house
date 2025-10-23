@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -10,6 +10,7 @@ interface ErrorProps {
 
 export default function Error({ error, reset }: ErrorProps) {
   const locale = useLocale();
+  const t = useTranslations();
 
   return (
     <main className="bg-black text-white min-h-screen flex items-center justify-center px-4">
@@ -26,20 +27,20 @@ export default function Error({ error, reset }: ErrorProps) {
             className="text-4xl md:text-6xl font-bold uppercase"
             style={{ fontFamily: "'Jost', sans-serif" }}
           >
-            Maintenance en cours
+            {t('error.title')}
           </h1>
         </div>
 
         {/* Description */}
         <div className="space-y-4">
           <p className="text-lg md:text-xl text-gray-400">
-            Nous effectuons actuellement une maintenance sur notre site.
+            {t('error.description')}
           </p>
           <p className="text-base md:text-lg text-gray-500">
-            Nous serons de retour très bientôt avec de nouvelles améliorations !
+            {t('error.message')}
           </p>
           <p className="text-sm text-gray-600">
-            Merci de votre patience et de votre compréhension.
+            {t('error.patience')}
           </p>
         </div>
 
@@ -47,30 +48,40 @@ export default function Error({ error, reset }: ErrorProps) {
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
           <button
             onClick={() => reset()}
-            className="px-8 py-3 bg-[#860000] text-white font-bold hover:opacity-80 transition-opacity rounded-lg"
-            style={{ fontFamily: "'Jost', sans-serif" }}
+            className="px-8 py-3 text-white font-bold hover:opacity-80 transition-opacity rounded-lg"
+            style={{ fontFamily: "'Jost', sans-serif", backgroundColor: "var(--brand-accent)" }}
           >
-            Réessayer
+            {t('error.retry')}
           </button>
           <Link 
             href={`/${locale}`}
-            className="px-8 py-3 border-2 border-[#860000] text-[#860000] font-bold hover:bg-[#860000] hover:text-white transition-all rounded-lg"
-            style={{ fontFamily: "'Jost', sans-serif" }}
+            className="px-8 py-3 border-2 font-bold hover:text-white transition-all rounded-lg"
+            style={{ 
+              fontFamily: "'Jost', sans-serif",
+              borderColor: "var(--brand-accent)",
+              color: "var(--brand-accent)"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--brand-accent)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+            }}
           >
-            Retour à l&apos;accueil
+            {t('notfound.back_home')}
           </Link>
         </div>
 
         {/* Réseaux sociaux */}
         <div className="pt-8 border-t border-white/10">
-          <p className="text-gray-500 mb-4">Suivez-nous pour les mises à jour :</p>
+          <p className="text-gray-500 mb-4">{t('footer.follow_us')} :</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a 
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#860000] hover:text-white transition-colors font-medium"
-              style={{ fontFamily: "'Jost', sans-serif" }}
+              className="hover:text-white transition-colors font-medium"
+              style={{ fontFamily: "'Jost', sans-serif", color: "var(--brand-accent)" }}
             >
               Instagram
             </a>
@@ -78,17 +89,17 @@ export default function Error({ error, reset }: ErrorProps) {
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#860000] hover:text-white transition-colors font-medium"
-              style={{ fontFamily: "'Jost', sans-serif" }}
+              className="hover:text-white transition-colors font-medium"
+              style={{ fontFamily: "'Jost', sans-serif", color: "var(--brand-accent)" }}
             >
               Facebook
             </a>
             <a 
               href="mailto:contact@estherhouse.ch"
-              className="text-[#860000] hover:text-white transition-colors font-medium"
-              style={{ fontFamily: "'Jost', sans-serif" }}
+              className="hover:text-white transition-colors font-medium"
+              style={{ fontFamily: "'Jost', sans-serif", color: "var(--brand-accent)" }}
             >
-              Email
+              {t('error.contact_us')}
             </a>
           </div>
         </div>

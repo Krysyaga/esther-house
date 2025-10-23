@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { UpcomingEventsStacked } from "@/components/home/upcoming-events-stacked";
 
 interface Event {
   id: number;
@@ -47,6 +49,7 @@ const EVENTS: Event[] = [
 ];
 
 export default function HomePage() {
+  const t = useTranslations();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -143,7 +146,7 @@ export default function HomePage() {
                     className="tracking-widest uppercase text-gray-500 text-xs md:text-sm" 
                     style={{ fontFamily: "'Jost', sans-serif", fontSize: 'clamp(12px, 2vw, 18px)' }}
                   >
-                    Unique date suisse
+                    {t('hero.unique_date')}
                   </p>
                   <p 
                     className="text-gray-400 font-semibold" 
@@ -164,7 +167,7 @@ export default function HomePage() {
                       key={index}
                       onClick={() => goToSlide(index)}
                       style={{
-                        backgroundColor: index === currentSlide ? '#860000' : '#4b5563',
+                        backgroundColor: index === currentSlide ? 'var(--brand-accent)' : '#4b5563',
                         width: index === currentSlide ? '16px' : '8px',
                         height: '2px',
                         transition: 'all 300ms',
@@ -179,8 +182,10 @@ export default function HomePage() {
               <div className="hidden md:block w-3/5" />
             </div>
           </div>
+          
         </div>
       </section>
+      <UpcomingEventsStacked />
       </main>
     </>
   );
