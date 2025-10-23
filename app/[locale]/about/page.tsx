@@ -145,7 +145,7 @@ export default function AboutPage() {
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
-                <h3 className="text-lg font-semibold" style={{ fontFamily: "'Jost', sans-serif" }}>Membre de l'Équipe {member}</h3>
+                <h3 className="text-lg font-semibold" style={{ fontFamily: "'Jost', sans-serif" }}>Membre de l&apos;Équipe {member}</h3>
                 <p className="text-gray-400 text-sm">{t('pages.construction')}</p>
               </div>
             ))}

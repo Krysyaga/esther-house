@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     // Test connexion SMTP
     console.log('Testing SMTP connection...');
     await new Promise((resolve, reject) => {
-      transporter.verify((error, success) => {
+      transporter.verify((error) => {
         if (error) {
           console.error('SMTP Verify Error:', error);
           reject(error);

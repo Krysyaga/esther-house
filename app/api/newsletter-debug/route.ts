@@ -20,7 +20,7 @@ export async function GET() {
   console.log('Domain ID:', domainId);
   console.log('Token length:', token.length);
 
-  const results: any = {};
+  const results: Record<string, unknown> = {};
 
   // Test 1: Get domain info with /1/newsletters/{domain}
   try {
