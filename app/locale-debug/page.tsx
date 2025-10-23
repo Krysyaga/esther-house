@@ -71,7 +71,7 @@ export default function LocaleDebugPage() {
                   <span className="text-gray-400">Endpoint:</span> https://ipapi.co/json/
                 </p>
                 <p>
-                  <span className="text-gray-400">Coût:</span> Gratuit, pas d'authentification
+                  <span className="text-gray-400">Coût:</span> Gratuit, pas d&apos;authentification
                 </p>
                 <p className="text-yellow-400 mt-2">
                   ℹ️ Fonctionne uniquement en HTTPS et en production. En local/dev, utilisez un VPN pour tester.
@@ -137,7 +137,7 @@ export default function LocaleDebugPage() {
             <section className="bg-gray-900 p-6 rounded-lg">
               <h2 className="text-2xl font-bold mb-4">🔄 Fallback</h2>
               <div className="space-y-2 text-sm text-gray-300">
-                <p>Si la géolocalisation échoue, l'app regarde:</p>
+                <p>Si la géolocalisation échoue, l&apos;app regarde:</p>
                 <ul className="ml-4 space-y-1">
                   <li>1. Langue du navigateur (navigator.language)</li>
                   <li>2. Sinon: English par défaut</li>
@@ -150,9 +150,9 @@ export default function LocaleDebugPage() {
               <h2 className="text-2xl font-bold mb-4">📝 Notes Importantes</h2>
               <ul className="space-y-2 text-sm text-gray-300">
                 <li>✅ La redirection se fait <strong>SEULEMENT</strong> sur la page racine (/)</li>
-                <li>✅ Une fois redirigé, l'utilisateur peut changer de langue avec les boutons FR/EN</li>
+                <li>✅ Une fois redirigé, l&apos;utilisateur peut changer de langue avec les boutons FR/EN</li>
                 <li>✅ Les changements de langue sont conservés dans la session (URL change)</li>
-                <li>⚠️ Si l'utilisateur revient à /, il sera redirigé à nouveau selon sa localisation</li>
+                <li>⚠️ Si l&apos;utilisateur revient à /, il sera redirigé à nouveau selon sa localisation</li>
                 <li>🔒 Pas de cookies ou localStorage (pas de tracking)</li>
               </ul>
             </section>
