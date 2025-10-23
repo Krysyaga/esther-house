@@ -206,13 +206,15 @@ export function Header() {
           onClick={() => setIsMenuOpen(false)}
         >
           {/* Background Image */}
-          <Image
-            src="/images/IMG_2008.jpg"
-            alt="Menu Background"
-            fill
-            className="object-cover absolute inset-0 pointer-events-none"
-            priority
-          />
+          <div className="absolute inset-0 pointer-events-none">
+            <Image
+              src="/images/IMG_2008.jpg"
+              alt="Menu Background"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black/60 pointer-events-none" />
           
@@ -249,7 +251,7 @@ export function Header() {
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-3xl font-bold uppercase hover:opacity-70 transition-opacity pointer-events-auto"
+                className="header-link text-3xl font-bold uppercase hover:opacity-70 transition-opacity pointer-events-auto"
                 style={{ fontFamily: "'Jost', sans-serif" }}
               >
                 {item.label}
@@ -266,13 +268,15 @@ export function Header() {
           onClick={() => setIsMenuOpen(false)}
         >
           {/* Background Image */}
-          <Image
-            src="/images/IMG_2008.jpg"
-            alt="Menu Background"
-            fill
-            className="object-cover absolute inset-0 pointer-events-none"
-            priority
-          />
+          <div className="absolute inset-0 pointer-events-none">
+            <Image
+              src="/images/IMG_2008.jpg"
+              alt="Menu Background"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black/60 pointer-events-none" />
           
@@ -309,7 +313,7 @@ export function Header() {
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-4xl font-bold uppercase hover:opacity-70 transition-opacity pointer-events-auto"
+                className="header-link text-4xl font-bold uppercase hover:opacity-70 transition-opacity pointer-events-auto"
                 style={{ fontFamily: "'Jost', sans-serif" }}
               >
                 {item.label}
