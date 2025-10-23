@@ -15,13 +15,41 @@ export function Footer() {
   const t = useTranslations();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    setError('');
+    
+    if (!email) {
+      return;
+    }
+
+    setLoading(true);
+    
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to subscribe');
+      }
+
       setSubscribed(true);
       setEmail('');
       setTimeout(() => setSubscribed(false), 3000);
+    } catch (err) {
+      console.error('Newsletter subscription error:', err);
+      setError(t('footer.newsletter_error'));
+      setTimeout(() => setError(''), 3000);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -41,18 +69,21 @@ export function Footer() {
               placeholder={t('footer.newsletter_placeholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              disabled={loading}
               required
-              className="px-3 md:px-4 py-2 bg-white border border-black/20 rounded text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black text-sm"
+              className="px-3 md:px-4 py-2 bg-white border border-black/20 rounded text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black text-sm disabled:opacity-50"
               style={{ fontFamily: "'Jost', sans-serif" }}
             />
             <button
               type="submit"
-              className="px-4 md:px-6 py-2 bg-black text-white font-bold hover:opacity-80 transition-opacity rounded text-sm whitespace-nowrap"
+              disabled={loading}
+              className="px-4 md:px-6 py-2 bg-black text-white font-bold hover:opacity-80 transition-opacity rounded text-sm whitespace-nowrap disabled:opacity-50"
               style={{ fontFamily: "'Jost', sans-serif" }}
             >
-              {subscribed ? t('footer.newsletter_subscribed') : t('footer.newsletter_button')}
+              {loading ? t('footer.newsletter_sending') : subscribed ? t('footer.newsletter_subscribed') : t('footer.newsletter_button')}
             </button>
           </form>
+          {error && <p className="text-red-600 text-xs md:text-sm mt-2">{error}</p>}
         </div>
 
         {/* Social Icons */}

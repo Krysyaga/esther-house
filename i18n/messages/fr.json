@@ -27,6 +27,8 @@
     "newsletter_placeholder": "Votre email",
     "newsletter_button": "S'abonner",
     "newsletter_subscribed": "✓",
+    "newsletter_sending": "Envoi...",
+    "newsletter_error": "Une erreur est survenue. Veuillez réessayer.",
     "follow_us": "Suivez-nous",
     "search": "Rechercher"
   },
