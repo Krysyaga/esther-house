@@ -26,7 +26,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[#d1cfc0] text-black mt-12">
+    <footer className="bg-[#F7E6CA] text-black mt-12">
       <div className="w-full px-4 md:px-8 lg:px-12 py-8 md:py-12">
         {/* Newsletter */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-8 mb-8 md:mb-12 pb-8 md:pb-12 border-b border-black/20">

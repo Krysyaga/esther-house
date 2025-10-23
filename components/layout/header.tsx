@@ -202,16 +202,27 @@ export function Header() {
       {/* Full Screen Menu Modal */}
       {isMenuOpen && (
         <div 
-          className="fixed inset-0 bg-black text-white z-50 md:hidden"
+          className="fixed inset-0 bg-black text-white z-50 md:hidden overflow-hidden"
           onClick={() => setIsMenuOpen(false)}
         >
+          {/* Background Image */}
+          <Image
+            src="/images/IMG_2008.jpg"
+            alt="Menu Background"
+            fill
+            className="object-cover absolute inset-0 pointer-events-none"
+            priority
+          />
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black/60 pointer-events-none" />
+          
           {/* Close Button */}
           <button 
             onClick={(e) => {
               e.stopPropagation();
               setIsMenuOpen(false);
             }}
-            className="absolute top-8 right-6 hover:opacity-70 transition-opacity"
+            className="absolute top-8 right-6 hover:opacity-70 transition-opacity z-10"
             aria-label="Close menu"
           >
             <svg 
@@ -231,15 +242,14 @@ export function Header() {
 
           {/* Menu Content */}
           <div 
-            className="h-full flex flex-col items-center justify-center space-y-6"
-            onClick={(e) => e.stopPropagation()}
+            className="h-full flex flex-col items-center justify-center space-y-6 relative z-10 pointer-events-none"
           >
             {menuItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-3xl font-bold uppercase hover:opacity-70 transition-opacity"
+                className="text-3xl font-bold uppercase hover:opacity-70 transition-opacity pointer-events-auto"
                 style={{ fontFamily: "'Jost', sans-serif" }}
               >
                 {item.label}
@@ -252,16 +262,27 @@ export function Header() {
       {/* Desktop Menu Modal */}
       {isMenuOpen && (
         <div 
-          className="hidden md:block fixed inset-0 bg-black/95 text-white z-50 backdrop-blur-sm"
+          className="hidden md:block fixed inset-0 text-white z-50 overflow-hidden"
           onClick={() => setIsMenuOpen(false)}
         >
+          {/* Background Image */}
+          <Image
+            src="/images/IMG_2008.jpg"
+            alt="Menu Background"
+            fill
+            className="object-cover absolute inset-0 pointer-events-none"
+            priority
+          />
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black/60 pointer-events-none" />
+          
           {/* Close Button */}
           <button 
             onClick={(e) => {
               e.stopPropagation();
               setIsMenuOpen(false);
             }}
-            className="absolute top-8 right-6 hover:opacity-70 transition-opacity"
+            className="absolute top-8 right-6 hover:opacity-70 transition-opacity z-10"
             aria-label="Close menu"
           >
             <svg 
@@ -281,15 +302,14 @@ export function Header() {
 
           {/* Menu Content */}
           <div 
-            className="h-full flex flex-col items-center justify-center space-y-8"
-            onClick={(e) => e.stopPropagation()}
+            className="h-full flex flex-col items-center justify-center space-y-8 relative z-10 pointer-events-none"
           >
             {menuItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-4xl font-bold uppercase hover:opacity-70 transition-opacity"
+                className="text-4xl font-bold uppercase hover:opacity-70 transition-opacity pointer-events-auto"
                 style={{ fontFamily: "'Jost', sans-serif" }}
               >
                 {item.label}
