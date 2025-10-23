@@ -32,7 +32,7 @@ export function Header() {
 
   return (
     <>
-      <header className={`sticky top-0 z-40 bg-black text-white transition-all duration-300 px-4 md:px-8 lg:px-16 ${isScrolled ? 'pt-2' : 'pt-4'}`}>
+      <header className={`sticky top-0 z-40 bg-black text-white transition-all duration-300 px-4 md:px-8 lg:px-16 ${isScrolled ? 'pt-2' : 'pt-12'}`}>
         <nav className="h-20 md:h-16 flex items-center px-6 md:px-12">
           {/* Desktop Layout - 3 Columns */}
           <div className="hidden md:grid grid-cols-3 w-full items-center gap-8">
