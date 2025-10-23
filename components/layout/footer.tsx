@@ -55,41 +55,38 @@ export function Footer() {
 
   return (
     <footer className="bg-[#F7E6CA] text-black mt-12">
-      <div className="w-full px-4 md:px-8 lg:px-12 py-8 md:py-12">
+      <div className="w-full px-4 md:px-8 lg:px-12 py-4 md:py-6">
         {/* Newsletter */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-8 mb-8 md:mb-12 pb-8 md:pb-12 border-b border-black/20">
-          <div className="flex-1">
-            <h3 className="font-bold text-base md:text-lg mb-2" style={{ fontFamily: "'Jost', sans-serif" }}>{t('footer.newsletter_title')}</h3>
-            <p className="text-xs md:text-sm text-gray-700" style={{ fontFamily: "'Jost', sans-serif" }}>{t('footer.newsletter_description')}</p>
-          </div>
-          
-          <form onSubmit={handleSubscribe} className="w-full md:w-auto flex flex-col md:flex-row gap-2">
-            <input
-              type="email"
-              placeholder={t('footer.newsletter_placeholder')}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={loading || subscribed}
-              required
-              className="px-3 md:px-4 py-2 bg-white border border-black/20 rounded text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black text-sm disabled:opacity-50"
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            />
-            <button
-              type="submit"
-              disabled={loading || subscribed}
-              className="px-4 md:px-6 py-2 bg-black text-white font-bold hover:opacity-80 transition-opacity rounded text-sm whitespace-nowrap disabled:opacity-50"
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
-              {loading ? t('footer.newsletter_sending') : subscribed ? `✓ ${t('footer.newsletter_subscribed')}` : t('footer.newsletter_button')}
-            </button>
+        <div className="flex flex-col items-center text-center mb-6 pb-6 border-b border-black/20">
+          <form onSubmit={handleSubscribe} className="flex flex-col gap-2 w-full max-w-xs">
+            <div className="flex flex-row gap-2">
+              <input
+                type="email"
+                placeholder={t('footer.newsletter_placeholder')}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={loading || subscribed}
+                required
+                className="flex-1 px-3 md:px-4 py-2 bg-white border border-black/20 rounded text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black text-sm disabled:opacity-50"
+                style={{ fontFamily: "'Jost', sans-serif" }}
+              />
+              <button
+                type="submit"
+                disabled={loading || subscribed}
+                className="px-4 md:px-6 py-2 bg-black text-white font-bold hover:opacity-80 transition-opacity rounded text-sm whitespace-nowrap disabled:opacity-50"
+                style={{ fontFamily: "'Jost', sans-serif" }}
+              >
+                {loading ? t('footer.newsletter_sending') : subscribed ? `✓ ${t('footer.newsletter_subscribed')}` : t('footer.newsletter_subscribe_button')}
+              </button>
+            </div>
+            {error && <p className="text-red-600 text-xs md:text-sm">{error}</p>}
+            {subscribed && <p className="text-green-600 text-xs md:text-sm">{t('footer.newsletter_success')}</p>}
           </form>
-          {error && <p className="text-red-600 text-xs md:text-sm mt-2">{error}</p>}
-          {subscribed && <p className="text-green-600 text-xs md:text-sm mt-2">{t('footer.newsletter_success')}</p>}
         </div>
 
         {/* Social Icons */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
-          <p className="text-xs md:text-sm text-gray-700" style={{ fontFamily: "'Jost', sans-serif" }}>&copy; {new Date().getFullYear()} Esther House - {t('footer.rights')}</p>
+        <div className="flex flex-col items-center gap-6 mt-6">
+          <p className="text-xs md:text-sm text-gray-700 m-0" style={{ fontFamily: "'Jost', sans-serif" }}>&copy; {new Date().getFullYear()} Esther House - {t('footer.rights')}</p>
           
           <div className="flex gap-4 md:gap-6">
             <a

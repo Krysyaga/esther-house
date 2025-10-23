@@ -30,6 +30,7 @@
     "newsletter_sending": "Sending...",
     "newsletter_success": "Thank you! A confirmation email has been sent to you.",
     "newsletter_error": "An error occurred. Please try again.",
+    "newsletter_subscribe_button": "Subscribe to our newsletter",
     "follow_us": "Follow us",
     "search": "Search"
   },

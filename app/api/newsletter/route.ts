@@ -14,6 +14,55 @@ export async function POST(request: Request) {
   try {
     console.log('Newsletter subscription attempt:', email);
 
+    const token = process.env.INFOMANIAK_API_TOKEN;
+    const domainId = process.env.INFOMANIAK_NEWSLETTER_DOMAIN || '29187';
+
+    if (!token) {
+      console.error('Missing Infomaniak API token');
+      return NextResponse.json(
+        { error: 'Newsletter service not configured' },
+        { status: 500 }
+      );
+    }
+
+    // Add subscriber via Infomaniak API
+    console.log('Adding subscriber to Infomaniak via API...');
+    console.log('Domain ID:', domainId);
+
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    };
+
+    const addSubRes = await fetch(
+      `https://api.infomaniak.com/1/newsletters/${domainId}/subscribers`,
+      {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          email: email,
+        }),
+      }
+    );
+
+    const addSubText = await addSubRes.text();
+    console.log('Infomaniak API response status:', addSubRes.status);
+    console.log('Infomaniak API response body:', addSubText);
+
+    let addSubData;
+    try {
+      addSubData = JSON.parse(addSubText);
+    } catch {
+      addSubData = addSubText;
+    }
+
+    if (!addSubRes.ok) {
+      console.error('Failed to add subscriber to Infomaniak:', addSubData);
+      // Continue anyway - still send confirmation email
+    } else {
+      console.log('✓ Subscriber added to Infomaniak');
+    }
+
     // Configure Nodemailer with Infomaniak SMTP
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'mail.infomaniak.com',
