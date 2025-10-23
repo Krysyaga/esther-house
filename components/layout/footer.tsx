@@ -69,21 +69,22 @@ export function Footer() {
               placeholder={t('footer.newsletter_placeholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              disabled={loading}
+              disabled={loading || subscribed}
               required
               className="px-3 md:px-4 py-2 bg-white border border-black/20 rounded text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black text-sm disabled:opacity-50"
               style={{ fontFamily: "'Jost', sans-serif" }}
             />
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || subscribed}
               className="px-4 md:px-6 py-2 bg-black text-white font-bold hover:opacity-80 transition-opacity rounded text-sm whitespace-nowrap disabled:opacity-50"
               style={{ fontFamily: "'Jost', sans-serif" }}
             >
-              {loading ? t('footer.newsletter_sending') : subscribed ? t('footer.newsletter_subscribed') : t('footer.newsletter_button')}
+              {loading ? t('footer.newsletter_sending') : subscribed ? `✓ ${t('footer.newsletter_subscribed')}` : t('footer.newsletter_button')}
             </button>
           </form>
           {error && <p className="text-red-600 text-xs md:text-sm mt-2">{error}</p>}
+          {subscribed && <p className="text-green-600 text-xs md:text-sm mt-2">{t('footer.newsletter_success')}</p>}
         </div>
 
         {/* Social Icons */}

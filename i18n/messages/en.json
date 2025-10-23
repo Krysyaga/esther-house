@@ -26,8 +26,9 @@
     "newsletter_description": "Receive our latest news",
     "newsletter_placeholder": "Your email",
     "newsletter_button": "Subscribe",
-    "newsletter_subscribed": "✓",
+    "newsletter_subscribed": "Subscribed!",
     "newsletter_sending": "Sending...",
+    "newsletter_success": "Thank you! A confirmation email has been sent to you.",
     "newsletter_error": "An error occurred. Please try again.",
     "follow_us": "Follow us",
     "search": "Search"
