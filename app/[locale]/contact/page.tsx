@@ -137,9 +137,7 @@ export default function ContactPage() {
                   {t('pages.contact_hours')}
                 </h3>
                 <p className="text-gray-300">
-                  Lundi - Vendredi: 9:00 - 18:00<br />
-                  Samedi: 10:00 - 16:00<br />
-                  Dimanche: Fermé
+                  Lundi - Vendredi: 9:00 - 18:00
                 </p>
               </div>
             </div>

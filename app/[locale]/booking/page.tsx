@@ -10,9 +10,9 @@ export default function BookingPage() {
     email: '',
     event: 'concert',
     date: '',
-    tickets: '1',
     message: '',
   });
+  const [technicalRider, setTechnicalRider] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [statusMessage, setStatusMessage] = useState('');
@@ -25,23 +25,41 @@ export default function BookingPage() {
     }));
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && file.type === 'application/pdf') {
+      setTechnicalRider(file);
+    } else if (file) {
+      alert('Veuillez sélectionner un fichier PDF uniquement');
+      e.target.value = '';
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setStatus('idle');
 
     try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('event', formData.event);
+      formDataToSend.append('date', formData.date);
+      formDataToSend.append('message', formData.message);
+
+      if (technicalRider) {
+        formDataToSend.append('technicalRider', technicalRider);
+      }
+
       const response = await fetch('/api/booking', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        body: formDataToSend,
       });
 
       let data;
       const contentType = response.headers.get('content-type');
-      
+
       if (contentType && contentType.includes('application/json')) {
         data = await response.json();
       } else {
@@ -53,7 +71,8 @@ export default function BookingPage() {
       if (response.ok) {
         setStatus('success');
         setStatusMessage('Réservation envoyée avec succès ! Nous confirmerons votre demande bientôt.');
-        setFormData({ name: '', email: '', event: 'concert', date: '', tickets: '1', message: '' });
+        setFormData({ name: '', email: '', event: 'concert', date: '', message: '' });
+        setTechnicalRider(null);
       } else {
         setStatus('error');
         setStatusMessage(data.error || 'Une erreur est survenue. Veuillez réessayer.');
@@ -153,12 +172,13 @@ export default function BookingPage() {
                 name="event"
                 value={formData.event}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg focus:border-white/60 focus:outline-none transition text-white"
+                className="w-full px-4 py-3 bg-black border border-white/20 rounded-lg focus:border-white/60 focus:outline-none transition text-white [&>option]:bg-black [&>option]:text-white"
+                style={{ fontFamily: "'Jost', sans-serif" }}
               >
-                <option value="concert">{t('pages.booking_event_concert') || 'Concert'}</option>
-                <option value="theatre">{t('pages.booking_event_theatre') || 'Théâtre'}</option>
-                <option value="exhibition">{t('pages.booking_event_exhibition') || 'Exposition'}</option>
-                <option value="other">{t('pages.booking_event_other') || 'Autre'}</option>
+                <option value="concert" className="bg-black text-white">{t('pages.booking_event_concert') || 'Concert'}</option>
+                <option value="theatre" className="bg-black text-white">{t('pages.booking_event_theatre') || 'Théâtre'}</option>
+                <option value="exhibition" className="bg-black text-white">{t('pages.booking_event_exhibition') || 'Exposition'}</option>
+                <option value="other" className="bg-black text-white">{t('pages.booking_event_other') || 'Autre'}</option>
               </select>
             </div>
 
@@ -178,22 +198,24 @@ export default function BookingPage() {
               />
             </div>
 
-            {/* Number of Tickets */}
+            {/* Technical Rider PDF Upload */}
             <div>
-              <label htmlFor="tickets" className="block text-sm font-medium text-gray-300 mb-3 uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
-                {t('pages.booking_tickets')}
+              <label htmlFor="technicalRider" className="block text-sm font-medium text-gray-300 mb-3 uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
+                Rider Technique (PDF)
               </label>
               <input
-                type="number"
-                id="tickets"
-                name="tickets"
-                value={formData.tickets}
-                onChange={handleChange}
-                min="1"
-                max="100"
-                required
-                className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg focus:border-white/60 focus:outline-none transition text-white"
+                type="file"
+                id="technicalRider"
+                name="technicalRider"
+                accept=".pdf"
+                onChange={handleFileChange}
+                className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg focus:border-white/60 focus:outline-none transition text-white file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-white/10 file:text-white hover:file:bg-white/20 file:cursor-pointer"
               />
+              {technicalRider && (
+                <p className="mt-2 text-sm text-gray-400">
+                  Fichier sélectionné: {technicalRider.name}
+                </p>
+              )}
             </div>
 
             {/* Message */}

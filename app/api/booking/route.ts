@@ -3,11 +3,16 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { name, email, event, date, tickets, message } = body;
+    const formData = await request.formData();
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const event = formData.get('event') as string;
+    const date = formData.get('date') as string;
+    const message = formData.get('message') as string;
+    const technicalRider = formData.get('technicalRider') as File | null;
 
     // Validation
-    if (!name || !email || !event || !date || !tickets) {
+    if (!name || !email || !event || !date) {
       return NextResponse.json(
         { error: 'Tous les champs sont requis' },
         { status: 400 }
@@ -47,6 +52,17 @@ export async function POST(request: NextRequest) {
       });
     });
 
+    // Prepare attachment if PDF is provided
+    const attachments = [];
+    if (technicalRider) {
+      const buffer = await technicalRider.arrayBuffer();
+      attachments.push({
+        filename: technicalRider.name,
+        content: Buffer.from(buffer),
+        contentType: 'application/pdf',
+      });
+    }
+
     // Email to Esther House
     const mailOptions = {
       from: `"Réservation Esther House" <${process.env.SMTP_FROM}>`,
@@ -58,10 +74,11 @@ export async function POST(request: NextRequest) {
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Type d'événement:</strong> ${event}</p>
         <p><strong>Date souhaitée:</strong> ${date}</p>
-        <p><strong>Nombre de billets:</strong> ${tickets}</p>
+        ${technicalRider ? `<p><strong>Rider technique:</strong> ${technicalRider.name} (voir pièce jointe)</p>` : ''}
         ${message ? `<p><strong>Informations supplémentaires:</strong></p><p>${message.replace(/\n/g, '<br>')}</p>` : ''}
       `,
       replyTo: email,
+      attachments: attachments,
     };
 
     console.log('Sending booking email to:', process.env.SMTP_FROM);
@@ -76,7 +93,8 @@ export async function POST(request: NextRequest) {
       html: `
         <h2>Confirmation de réservation</h2>
         <p>Bonjour ${name},</p>
-        <p>Merci pour votre demande de réservation pour l'événement <strong>${event}</strong> le <strong>${date}</strong> pour <strong>${tickets} billet(s)</strong>.</p>
+        <p>Merci pour votre demande de réservation pour l'événement <strong>${event}</strong> le <strong>${date}</strong>.</p>
+        ${technicalRider ? `<p>Votre rider technique <strong>${technicalRider.name}</strong> a bien été reçu.</p>` : ''}
         <p>Nous confirmerons votre réservation dans les meilleurs délais.</p>
         <p>Cordialement,<br/>L'équipe Esther House</p>
       `,
