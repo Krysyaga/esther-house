@@ -32,6 +32,18 @@ export function Header() {
 
   return (
     <>
+      {/* Preload menu background image */}
+      <div className="hidden">
+        <Image
+          src="/images/IMG_2008.jpg"
+          alt=""
+          width={1920}
+          height={1080}
+          priority
+          quality={85}
+        />
+      </div>
+
       <header className={`sticky top-0 z-40 bg-black text-white transition-all duration-300 px-4 md:px-8 lg:px-16 ${isScrolled ? 'pt-2' : 'pt-12'}`}>
         <nav className="h-20 md:h-16 flex items-center px-6 md:px-12">
           {/* Desktop Layout - 3 Columns */}
