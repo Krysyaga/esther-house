@@ -631,6 +631,169 @@
 }
 
 /* ============================================
+   CUSTOM REACT-DATEPICKER STYLING - DARK THEME
+   ============================================ */
+
+/* Calendar container */
+.booking-calendar {
+  font-family: 'Jost', sans-serif !important;
+  background-color: #000 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Header with month/year */
+.react-datepicker__header {
+  background-color: rgba(134, 0, 0, 0.1) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-top-left-radius: 0.5rem !important;
+  border-top-right-radius: 0.5rem !important;
+  padding-top: 1rem !important;
+}
+
+.react-datepicker__current-month {
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Navigation arrows */
+.react-datepicker__navigation {
+  top: 1rem !important;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  border-width: 2px 2px 0 0 !important;
+}
+
+.react-datepicker__navigation:hover .react-datepicker__navigation-icon::before {
+  border-color: var(--brand-accent) !important;
+}
+
+/* Day names (Mon, Tue, etc.) */
+.react-datepicker__day-names {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  padding: 0.5rem 0 !important;
+}
+
+.react-datepicker__day-name {
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  width: 2.5rem !important;
+  line-height: 2rem !important;
+  margin: 0.2rem !important;
+}
+
+/* Month container */
+.react-datepicker__month {
+  background-color: #000 !important;
+  margin: 0.5rem !important;
+}
+
+/* Individual day cells */
+.react-datepicker__day {
+  color: #fff !important;
+  background-color: transparent !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  line-height: 2.5rem !important;
+  margin: 0.2rem !important;
+  border-radius: 0.375rem !important;
+  font-weight: 500 !important;
+  transition: all 200ms ease !important;
+  border: 1px solid transparent !important;
+  position: relative !important;
+}
+
+/* Hovering over a day */
+.react-datepicker__day:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: #fff !important;
+}
+
+/* Hovering over available dates - Add red underline on hover */
+.react-datepicker__day:not(.react-datepicker__day--disabled):not(.react-datepicker__day--selected):not(.react-datepicker__day--outside-month):hover {
+  text-decoration: underline !important;
+  text-decoration-color: var(--brand-accent) !important;
+  text-underline-offset: 4px !important;
+  text-decoration-thickness: 2px !important;
+}
+
+/* Selected day */
+.react-datepicker__day--selected {
+  background-color: var(--brand-accent) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  border: 1px solid var(--brand-accent) !important;
+}
+
+.react-datepicker__day--selected:hover {
+  background-color: rgba(134, 0, 0, 0.8) !important;
+}
+
+/* Today's date */
+.react-datepicker__day--today {
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Disabled dates (before 2 months) */
+.react-datepicker__day--disabled {
+  color: rgba(255, 255, 255, 0.15) !important;
+  background-color: transparent !important;
+  cursor: not-allowed !important;
+  opacity: 0.3 !important;
+  border: 1px solid transparent !important;
+}
+
+.react-datepicker__day--disabled:hover {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  transform: none !important;
+}
+
+/* Available dates (after 2 months) - White border only */
+.react-datepicker__day:not(.react-datepicker__day--disabled):not(.react-datepicker__day--selected):not(.react-datepicker__day--outside-month) {
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  background-color: transparent !important;
+}
+
+/* Keyboard focus */
+.react-datepicker__day--keyboard-selected {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Outside month days - HIDE THEM */
+.react-datepicker__day--outside-month {
+  visibility: hidden !important;
+}
+
+/* Weekend styling (optional) */
+.react-datepicker__day--weekend {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Input field placeholder */
+.react-datepicker__input-container input::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Triangle pointer */
+.react-datepicker__triangle {
+  display: none !important;
+}
+
+/* ============================================
    CAROUSEL ANIMATIONS
    ============================================ */
 @keyframes fadeInScale {

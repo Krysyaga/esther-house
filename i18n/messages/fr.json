@@ -102,7 +102,8 @@
     "booking_cancellation": "Conditions d'Annulation",
     "booking_payment": "Moyens de Paiement",
     "booking_confirmation": "Confirmations",
-    "booking_support": "Support Client"
+    "booking_support": "Support Client",
+    "booking_min_advance": "Les réservations doivent être faites au minimum 2 mois à l'avance"
   },
   "ticketing": {
     "title": "Infos Billetterie",

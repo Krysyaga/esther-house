@@ -2,6 +2,8 @@
 
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export default function BookingPage() {
   const t = useTranslations();
@@ -9,13 +11,21 @@ export default function BookingPage() {
     name: '',
     email: '',
     event: 'concert',
-    date: '',
     message: '',
   });
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [technicalRider, setTechnicalRider] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [statusMessage, setStatusMessage] = useState('');
+
+  // Calculate minimum date (2 months from today)
+  const getMinimumDate = () => {
+    const today = new Date();
+    const twoMonthsFromNow = new Date(today);
+    twoMonthsFromNow.setMonth(today.getMonth() + 2);
+    return twoMonthsFromNow;
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -40,12 +50,19 @@ export default function BookingPage() {
     setLoading(true);
     setStatus('idle');
 
+    if (!selectedDate) {
+      setStatus('error');
+      setStatusMessage('Veuillez sélectionner une date');
+      setLoading(false);
+      return;
+    }
+
     try {
       const formDataToSend = new FormData();
       formDataToSend.append('name', formData.name);
       formDataToSend.append('email', formData.email);
       formDataToSend.append('event', formData.event);
-      formDataToSend.append('date', formData.date);
+      formDataToSend.append('date', selectedDate.toISOString().split('T')[0]);
       formDataToSend.append('message', formData.message);
 
       if (technicalRider) {
@@ -71,7 +88,8 @@ export default function BookingPage() {
       if (response.ok) {
         setStatus('success');
         setStatusMessage('Réservation envoyée avec succès ! Nous confirmerons votre demande bientôt.');
-        setFormData({ name: '', email: '', event: 'concert', date: '', message: '' });
+        setFormData({ name: '', email: '', event: 'concert', message: '' });
+        setSelectedDate(null);
         setTechnicalRider(null);
       } else {
         setStatus('error');
@@ -187,15 +205,20 @@ export default function BookingPage() {
               <label htmlFor="date" className="block text-sm font-medium text-gray-300 mb-3 uppercase" style={{ fontFamily: "'Jost', sans-serif" }}>
                 {t('pages.booking_desired_date') || 'Date Souhaitée'}
               </label>
-              <input
-                type="date"
-                id="date"
-                name="date"
-                value={formData.date}
-                onChange={handleChange}
+              <DatePicker
+                selected={selectedDate}
+                onChange={(date) => setSelectedDate(date)}
+                minDate={getMinimumDate()}
+                dateFormat="dd/MM/yyyy"
+                placeholderText="Sélectionner une date"
                 required
                 className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg focus:border-white/60 focus:outline-none transition text-white"
+                calendarClassName="booking-calendar"
+                wrapperClassName="w-full"
               />
+              <p className="mt-2 text-sm" style={{ color: "var(--brand-accent)" }}>
+                ⓘ {t('pages.booking_min_advance')}
+              </p>
             </div>
 
             {/* Technical Rider PDF Upload */}

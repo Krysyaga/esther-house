@@ -26,6 +26,7 @@
     "next-intl": "^3.16.0",
     "nodemailer": "^7.0.10",
     "react": "^19.0.0",
+    "react-datepicker": "^8.8.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.52.0",
     "react-hot-toast": "^2.4.1",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@types/node": "^20.14.0",
     "@types/react": "^19.0.0",
+    "@types/react-datepicker": "^6.2.0",
     "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",

@@ -102,7 +102,8 @@
     "booking_cancellation": "Cancellation Policy",
     "booking_payment": "Payment Methods",
     "booking_confirmation": "Confirmations",
-    "booking_support": "Customer Support"
+    "booking_support": "Customer Support",
+    "booking_min_advance": "Bookings must be made at least 2 months in advance"
   },
   "ticketing": {
     "title": "Ticketing Information",
