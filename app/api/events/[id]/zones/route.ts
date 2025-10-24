@@ -2,11 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getEventZones } from '@/lib/infomaniak';
 
 export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
+  _request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const eventId = parseInt(params.id);
+    const { id } = await params;
+    const eventId = parseInt(id);
 
     if (isNaN(eventId)) {
       return NextResponse.json(
@@ -24,7 +25,8 @@ export async function GET(
       },
     });
   } catch (error) {
-    console.error(`Error fetching zones for event ${params.id}:`, error);
+    const { id } = await params;
+    console.error(`Error fetching zones for event ${id}:`, error);
     return NextResponse.json(
       { error: 'Failed to fetch event zones' },
       { status: 500 }

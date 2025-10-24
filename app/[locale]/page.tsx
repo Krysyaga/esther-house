@@ -1,10 +1,11 @@
 import { UpcomingEventsStacked } from "@/components/home/upcoming-events-stacked";
 import { HeroCarousel } from "@/components/home/hero-carousel";
 import { getEventsWithZones } from "@/lib/infomaniak";
+import type { MappedEvent } from "@/types/infomaniak";
 
 export default async function HomePage() {
   // Fetch events from Infomaniak
-  let events = [];
+  let events: MappedEvent[] = [];
   try {
     events = await getEventsWithZones({
       limit: 10,

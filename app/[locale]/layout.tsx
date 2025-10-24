@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from "next-intl";
 import "../globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { CartProvider } from "@/contexts/CartContext";
 
 export const dynamic = 'force-dynamic';
 
@@ -44,11 +45,13 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+          <CartProvider>
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </CartProvider>
         </NextIntlClientProvider>
       </body>
     </html>

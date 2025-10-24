@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { getEvent, getEventZones, mapEventToApp } from "@/lib/infomaniak";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { EventDetailClient } from "@/components/events/EventDetailClient";
 
 export const dynamic = 'force-dynamic';
 
@@ -35,24 +35,6 @@ export default async function EventDetailPage({
   const { locale, id } = await params;
   const t = await getTranslations();
 
-  // Helper to translate common category names
-  const translateCategoryName = (name: string): string => {
-    const lowerName = name.toLowerCase();
-    if (lowerName === 'gratuit') {
-      return locale === 'en' ? 'Free' : 'Gratuit';
-    }
-    if (lowerName === 'plein tarif') {
-      return locale === 'en' ? 'Full Price' : 'Plein tarif';
-    }
-    if (lowerName === 'étudiant' || lowerName === 'etudiant') {
-      return locale === 'en' ? 'Student' : 'Étudiant';
-    }
-    if (lowerName === 'avs') {
-      return locale === 'en' ? 'Senior' : 'AVS';
-    }
-    return name; // Return original if no translation
-  };
-
   // Fetch event details
   let event;
   try {
@@ -67,7 +49,6 @@ export default async function EventDetailPage({
   }
 
   const eventDate = new Date(event.date);
-  const isSoldOut = event.status === 'full';
 
   return (
     <main className="bg-black text-white min-h-screen">
@@ -204,102 +185,7 @@ export default async function EventDetailPage({
           </div>
 
           {/* Right Column - Ticket Selection */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24 border border-white/20 rounded-lg p-6 bg-white/5">
-              <h3
-                className="text-2xl font-bold uppercase mb-6"
-                style={{ fontFamily: "'Jost', sans-serif" }}
-              >
-                {t('pages.event_tickets')}
-              </h3>
-              <div className="w-12 h-1 mb-6" style={{ backgroundColor: "var(--brand-accent)" }} />
-
-              {isSoldOut ? (
-                <div className="text-center py-8">
-                  <p
-                    className="text-xl font-bold uppercase mb-2"
-                    style={{
-                      fontFamily: "'Jost', sans-serif",
-                      color: "var(--brand-accent)"
-                    }}
-                  >
-                    {t('pages.event_sold_out')}
-                  </p>
-                  <p
-                    className="text-sm text-gray-400"
-                    style={{ fontFamily: "'Jost', sans-serif" }}
-                  >
-                    {t('pages.event_sold_out')}
-                  </p>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  {/* Zones and Categories */}
-                  {event.zones && event.zones.length > 0 ? (
-                    event.zones.map((zone) => (
-                      <div key={zone.zone_id} className="border-b border-white/10 pb-4 last:border-0">
-                        <h4
-                          className="font-semibold uppercase text-sm mb-3"
-                          style={{
-                            fontFamily: "'Jost', sans-serif",
-                            color: `#${zone.bg_color}`
-                          }}
-                        >
-                          {zone.name}
-                        </h4>
-                        <div className="space-y-2">
-                          {zone.categories.map((category) => (
-                            <div
-                              key={category.category_id}
-                              className="flex justify-between items-center text-sm"
-                            >
-                              <div>
-                                <p
-                                  className="font-medium"
-                                  style={{ fontFamily: "'Jost', sans-serif" }}
-                                >
-                                  {translateCategoryName(category.name)}
-                                </p>
-                                <p className="text-xs text-gray-400">
-                                  {category.free_seats} {t('pages.event_available')}
-                                </p>
-                              </div>
-                              <p
-                                className="font-bold"
-                                style={{
-                                  fontFamily: "'Jost', sans-serif",
-                                  color: "var(--brand-accent)"
-                                }}
-                              >
-                                CHF {category.amount.toFixed(2)}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <p className="text-gray-400 text-sm">Informations de billetterie non disponibles</p>
-                  )}
-
-                  {/* CTA Button - Link to Infomaniak or external ticketing */}
-                  <Link
-                    href={event.ticketUrl || `https://etickets.infomaniak.com`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full py-3 text-center rounded-lg font-bold uppercase text-sm tracking-wider transition-all duration-300 hover:opacity-90 mt-6"
-                    style={{
-                      fontFamily: "'Jost', sans-serif",
-                      backgroundColor: 'var(--brand-accent)',
-                      color: 'white'
-                    }}
-                  >
-                    {t('pages.event_book_tickets')}
-                  </Link>
-                </div>
-              )}
-            </div>
-          </div>
+          <EventDetailClient event={event} />
         </div>
       </section>
     </main>

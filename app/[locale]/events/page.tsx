@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { getEventsWithZones } from "@/lib/infomaniak";
+import type { MappedEvent } from "@/types/infomaniak";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,7 +21,7 @@ export default async function EventsPage({
   const t = await getTranslations();
 
   // Fetch all visible upcoming events
-  let events = [];
+  let events: MappedEvent[] = [];
   try {
     events = await getEventsWithZones({
       sort: 'date',
