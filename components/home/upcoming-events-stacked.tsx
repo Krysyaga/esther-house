@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
+import type { MappedEvent } from "@/types/infomaniak";
 
 interface UpcomingEvent {
   id: number;
@@ -13,50 +14,24 @@ interface UpcomingEvent {
   category: "concert" | "theatre" | "exposition" | "autre";
 }
 
-const UPCOMING_EVENTS: UpcomingEvent[] = [
-  {
-    id: 1,
-    name: "Puma Blue",
-    artist: "Concert",
-    date: "08 JUL 2026\nUMLE VENISSE",
-    image: "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=500&h=600&fit=crop",
-    category: "concert",
-  },
-  {
-    id: 2,
-    name: "Yvvns",
-    artist: "Concert",
-    date: "13.03.2026\nUMLE VENISSE",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop",
-    category: "concert",
-  },
-  {
-    id: 3,
-    name: "Del Water Gap",
-    artist: "Concert",
-    date: "22.04.2026\nUMLE VENISSE",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&h=600&fit=crop",
-    category: "concert",
-  },
-  {
-    id: 4,
-    name: "Perceval",
-    artist: "Live",
-    date: "06.03.2026\nUMLE VENISSE",
-    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=600&fit=crop",
-    category: "theatre",
-  },
-  {
-    id: 5,
-    name: "Yuston XIII",
-    artist: "Concert",
-    date: "07.03.2026\nUMLE VENISSE",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=600&fit=crop",
-    category: "concert",
-  },
-];
+interface UpcomingEventsStackedProps {
+  events: MappedEvent[];
+}
 
-export function UpcomingEventsStacked() {
+export function UpcomingEventsStacked({ events }: UpcomingEventsStackedProps) {
+  // Transform Infomaniak events to component format
+  const UPCOMING_EVENTS: UpcomingEvent[] = events.slice(0, 5).map((event) => ({
+    id: parseInt(event.id),
+    name: event.title,
+    artist: event.category.charAt(0).toUpperCase() + event.category.slice(1),
+    date: new Date(event.date).toLocaleDateString('fr-FR', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    }).toUpperCase() + '\n' + event.venue.name.toUpperCase(),
+    image: event.image || 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=500&h=600&fit=crop',
+    category: event.category,
+  }));
   const t = useTranslations();
   const locale = useLocale();
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -116,11 +91,17 @@ export function UpcomingEventsStacked() {
         </div>
 
         {/* Damier masonry avec chevauchement */}
-        <div 
+        <div
           ref={containerRef}
           className="relative upcoming-events-container"
           style={{
-            height: isMobile ? `${UPCOMING_EVENTS.length * 140 + 180}px` : "600px"
+            height: isMobile
+              ? `${UPCOMING_EVENTS.length * 140 + 180}px`
+              : UPCOMING_EVENTS.length <= 3
+                ? "400px"
+                : UPCOMING_EVENTS.length === 4
+                  ? "500px"
+                  : "600px"
           }}
         >
           {UPCOMING_EVENTS.map((event, index) => {
@@ -171,7 +152,10 @@ export function UpcomingEventsStacked() {
                 onMouseLeave={() => setHoveredCard(null)}
               >
                 {/* Carte */}
-                <div className="relative w-full h-full rounded-lg overflow-hidden border border-white/20 shadow-2xl group">
+                <Link
+                  href={`/${locale}/events/${event.id}`}
+                  className="relative w-full h-full rounded-lg overflow-hidden border border-white/20 shadow-2xl group block"
+                >
                   {/* Image de fond */}
                   <Image
                     src={event.image}
@@ -228,14 +212,14 @@ export function UpcomingEventsStacked() {
                           : "inset 0 0 0px transparent",
                     }}
                   />
-                </div>
+                </Link>
               </div>
             );
           })}
         </div>
 
         {/* CTA Button */}
-        <div className="flex justify-center mt-12 md:mt-16 lg:mt-24 pt-6 md:pt-8">
+        <div className="flex justify-center mt-8 md:mt-12 pt-6 md:pt-8">
           <Link
             href={`/${locale}/events`}
             className="header-link text-lg md:text-xl font-bold uppercase tracking-wider transition-all duration-300"
