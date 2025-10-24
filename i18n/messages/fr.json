@@ -103,7 +103,9 @@
     "booking_payment": "Moyens de Paiement",
     "booking_confirmation": "Confirmations",
     "booking_support": "Support Client",
-    "booking_min_advance": "Les réservations doivent être faites au minimum 2 mois à l'avance"
+    "booking_min_advance": "Les réservations doivent être faites au minimum 2 mois à l'avance",
+    "booking_email_placeholder": "votre.email@exemple.com",
+    "booking_date_placeholder": "Sélectionner une date"
   },
   "ticketing": {
     "title": "Infos Billetterie",

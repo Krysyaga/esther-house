@@ -176,7 +176,7 @@ export default function BookingPage() {
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg focus:border-white/60 focus:outline-none transition text-white placeholder-gray-500"
-                placeholder="votre.email@exemple.com"
+                placeholder={t('pages.booking_email_placeholder')}
               />
             </div>
 
@@ -210,7 +210,7 @@ export default function BookingPage() {
                 onChange={(date) => setSelectedDate(date)}
                 minDate={getMinimumDate()}
                 dateFormat="dd/MM/yyyy"
-                placeholderText="Sélectionner une date"
+                placeholderText={t('pages.booking_date_placeholder')}
                 required
                 className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg focus:border-white/60 focus:outline-none transition text-white"
                 calendarClassName="booking-calendar"
